@@ -6,10 +6,14 @@ export default function AllPlaces() {
 	const places: Place[] = [];
 
 	return (
-		<View>
+		<View style={styles.container}>
 			<PlacesList places={places} />
 		</View>
 	);
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+	container: {
+		flex: 1,
+	},
+});
