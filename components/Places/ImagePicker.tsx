@@ -74,12 +74,12 @@ export default function ImagePicker() {
 const styles = StyleSheet.create({
 	previewImage: {
 		width: "100%",
-		height: 200,
+		height: 300,
 		marginVertical: 16,
 		justifyContent: "center",
 		alignItems: "center",
 		backgroundColor: Colors.primary200,
-        borderRadius: 8,
+		borderRadius: 8,
 	},
 	previewText: {
 		textAlign: "center",
