@@ -37,7 +37,7 @@ export default function App() {
 							title: "Your Favorite Places",
 							headerRight: ({ tintColor }) => (
 								<IconButton
-									name="add"
+									icon="add"
 									onPress={() => navigation.navigate("AddPlace")}
 									size={24}
 									color={tintColor}

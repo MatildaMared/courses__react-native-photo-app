@@ -2,21 +2,21 @@ import { Pressable, StyleSheet } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
 interface Props {
-	name: keyof typeof Ionicons.glyphMap;
+	icon: keyof typeof Ionicons.glyphMap;
 	size?: number;
 	color?: string;
 	onPress?: () => void;
 }
 
 export default function IconButton(props: Props) {
-	const { name, size, color, onPress } = props;
+	const { icon, size, color, onPress } = props;
 
 	return (
 		<Pressable
 			onPress={onPress}
 			style={({ pressed }) => [styles.button, pressed && styles.pressed]}
 		>
-			<Ionicons name={name} size={size} color={color} />
+			<Ionicons name={icon} size={size} color={color} />
 		</Pressable>
 	);
 }
