@@ -1,10 +1,10 @@
-import { Alert, Button, Image, Text, View, StyleSheet } from "react-native";
+import { Alert, Image, Text, View, StyleSheet } from "react-native";
 import {
 	launchCameraAsync,
 	useCameraPermissions,
 	PermissionStatus,
 } from "expo-image-picker";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Colors } from "../../constants/colors";
 import OutlinedButton from "../UI/OutlinedButton";
 
@@ -12,10 +12,6 @@ export default function ImagePicker() {
 	const [cameraPermissionInformation, requestPermission] =
 		useCameraPermissions();
 	const [imageUri, setImageUri] = useState<string | null>(null);
-
-	useEffect(() => {
-		console.log(imageUri);
-	}, [imageUri]);
 
 	async function verifyPermissions() {
 		if (cameraPermissionInformation) {
@@ -87,6 +83,6 @@ const styles = StyleSheet.create({
 	previewText: {
 		textAlign: "center",
 		color: Colors.primary100,
-		margin: 16,
+		marginBottom: 16,
 	},
 });
