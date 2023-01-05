@@ -13,6 +13,7 @@ export default function OutlinedButton(props: Props) {
 
 	return (
 		<Pressable
+			onPress={onPress}
 			style={({ pressed }) => [styles.button, pressed && styles.pressed]}
 		>
 			<Ionicons
