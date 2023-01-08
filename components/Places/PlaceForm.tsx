@@ -13,15 +13,15 @@ export default function PlaceForm() {
 
 	return (
 		<ScrollView style={styles.container}>
-			{/* <View>
+			<View>
 				<Text style={styles.label}>Title</Text>
 				<TextInput
 					onChangeText={titleChangeHandler}
 					value={title}
 					style={styles.input}
 				/>
-			</View> */}
-			{/* <ImagePicker /> */}
+			</View>
+			<ImagePicker />
 			<LocationPicker />
 		</ScrollView>
 	);

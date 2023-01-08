@@ -26,7 +26,7 @@ export default function Map() {
 				/>
 			),
 		});
-	}, [navigation, savePickedLocationHandler]);
+	}, [navigation, savePickedLocationHandler, selectedLocation]);
 
 	function selectLocationHandler(event) {
 		const lat = event.nativeEvent.coordinate.latitude;

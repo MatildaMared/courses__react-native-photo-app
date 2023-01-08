@@ -6,15 +6,24 @@ import {
 	useForegroundPermissions,
 	PermissionStatus,
 } from "expo-location";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { getMapPreview } from "../../utils/location";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 
 export default function LocationPicker() {
 	const [locationPermissionInformation, requestPermission] =
 		useForegroundPermissions();
 	const [pickedLocation, setPickedLocation] = useState();
 	const navigation = useNavigation();
+	const route = useRoute();
+
+	const mapPickedLocation = route.params?.pickedLocation;
+
+	useEffect(() => {
+		if (mapPickedLocation) {
+			setPickedLocation(mapPickedLocation);
+		}
+	}, [mapPickedLocation]);
 
 	async function verifyPermissions() {
 		if (locationPermissionInformation) {
