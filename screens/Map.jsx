@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useState } from "react";
 import MapView, { Marker } from "react-native-maps";
 import { Alert, StyleSheet } from "react-native";
 import { useNavigation } from "@react-navigation/native";
@@ -38,7 +38,7 @@ export default function Map() {
 		});
 	}
 
-	function savePickedLocationHandler() {
+	const savePickedLocationHandler = useCallback(() => {
 		if (!selectedLocation) {
 			Alert.alert(
 				"No location selected!",
@@ -50,7 +50,7 @@ export default function Map() {
 		navigation.navigate("AddPlace", {
 			pickedLocation: selectedLocation,
 		});
-	}
+	}, [navigation, selectedLocation]);
 
 	return (
 		<MapView
