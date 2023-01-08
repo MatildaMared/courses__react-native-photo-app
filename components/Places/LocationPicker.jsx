@@ -14,13 +14,20 @@ import {
 	useRoute,
 } from "@react-navigation/native";
 
-export default function LocationPicker() {
+export default function LocationPicker(props) {
+	const { onPickLocation } = props;
 	const [locationPermissionInformation, requestPermission] =
 		useForegroundPermissions();
 	const [pickedLocation, setPickedLocation] = useState();
 	const navigation = useNavigation();
 	const route = useRoute();
 	const isFocused = useIsFocused();
+
+	useEffect(() => {
+		if (pickedLocation) {
+			onPickLocation(pickedLocation);
+		}
+	}, [pickedLocation]);
 
 	useEffect(() => {
 		if (isFocused && route.params) {

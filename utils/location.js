@@ -5,3 +5,20 @@ export function getMapPreview(lat, long) {
 
 	return imagePreviewUrl;
 }
+
+export async function getAdress(lat, lng) {
+	const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${GOOGLE_API_KEY}`;
+
+	const response = await fetch(url);
+	if (!response.ok) {
+		throw new Error("Something went wrong");
+	}
+
+	const data = await response.json();
+	if (!data.results) {
+		throw new Error("Something went wrong");
+	}
+
+	const address = data.results[0].formatted_address;
+	return address;
+}

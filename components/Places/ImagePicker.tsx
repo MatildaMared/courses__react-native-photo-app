@@ -4,14 +4,25 @@ import {
 	useCameraPermissions,
 	PermissionStatus,
 } from "expo-image-picker";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Colors } from "../../constants/colors";
 import OutlinedButton from "../UI/OutlinedButton";
 
-export default function ImagePicker() {
+interface Props {
+	onTakeImage: (imageUri: string) => void;
+}
+
+export default function ImagePicker(props: Props) {
+	const { onTakeImage } = props;
 	const [cameraPermissionInformation, requestPermission] =
 		useCameraPermissions();
 	const [imageUri, setImageUri] = useState<string | null>(null);
+
+	useEffect(() => {
+		if (imageUri) {
+			onTakeImage(imageUri);
+		}
+	}, [imageUri]);
 
 	async function verifyPermissions() {
 		if (cameraPermissionInformation) {
