@@ -25,7 +25,11 @@ export default function PlaceForm() {
 		setSelectedImage(imageUri);
 	}
 
-	function pickLocationHandler(location: { lat: number; lng: number }) {
+	function pickLocationHandler(location: {
+		lat: number;
+		lng: number;
+		address: string;
+	}) {
 		console.log("Picked location");
 		setPickedLocation(location);
 	}
