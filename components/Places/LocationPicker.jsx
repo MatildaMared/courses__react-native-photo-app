@@ -8,7 +8,11 @@ import {
 } from "expo-location";
 import { useEffect, useState } from "react";
 import { getMapPreview } from "../../utils/location";
-import { useNavigation, useRoute } from "@react-navigation/native";
+import {
+	useIsFocused,
+	useNavigation,
+	useRoute,
+} from "@react-navigation/native";
 
 export default function LocationPicker() {
 	const [locationPermissionInformation, requestPermission] =
@@ -16,14 +20,14 @@ export default function LocationPicker() {
 	const [pickedLocation, setPickedLocation] = useState();
 	const navigation = useNavigation();
 	const route = useRoute();
-
-	const mapPickedLocation = route.params?.pickedLocation;
+	const isFocused = useIsFocused();
 
 	useEffect(() => {
-		if (mapPickedLocation) {
+		if (isFocused && route.params) {
+			const mapPickedLocation = route.params?.pickedLocation;
 			setPickedLocation(mapPickedLocation);
 		}
-	}, [mapPickedLocation]);
+	}, [route, isFocused]);
 
 	async function verifyPermissions() {
 		if (locationPermissionInformation) {
