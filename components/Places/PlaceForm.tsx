@@ -35,10 +35,8 @@ export default function PlaceForm(props: Props) {
 		const place: Place = {
 			id: new Date().toString() + Math.random().toString(),
 			title,
-			location: {
-				latitude: pickedLocation.latitude,
-				longitude: pickedLocation.longitude,
-			},
+			lat: pickedLocation.latitude,
+			lng: pickedLocation.longitude,
 			imageUri: selectedImage,
 			address: pickedLocation.address,
 		};

@@ -8,6 +8,9 @@ import IconButton from "./components/UI/IconButton";
 import { Colors } from "./constants/colors";
 import Map from "./screens/Map";
 import { Place } from "./types/Place";
+import { init } from "./utils/database";
+import { useEffect, useState } from "react";
+import AppLoading from "expo-app-loading";
 
 export type StackParamList = {
 	AllPlaces: { place?: Place };
@@ -18,6 +21,22 @@ export type StackParamList = {
 const Stack = createNativeStackNavigator<StackParamList>();
 
 export default function App() {
+	const [dbInitialized, setDbInitialized] = useState(false);
+
+	useEffect(() => {
+		init()
+			.then(() => {
+				setDbInitialized(true);
+			})
+			.catch((error) => {
+				console.log(error);
+			});
+	}, []);
+
+	if (!dbInitialized) {
+		return <AppLoading />;
+	}
+
 	return (
 		<>
 			<StatusBar style="dark" />
