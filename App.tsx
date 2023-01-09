@@ -7,9 +7,10 @@ import AddPlace from "./screens/AddPlace";
 import IconButton from "./components/UI/IconButton";
 import { Colors } from "./constants/colors";
 import Map from "./screens/Map";
+import { Place } from "./types/Place";
 
 export type StackParamList = {
-	AllPlaces: undefined;
+	AllPlaces: { place?: Place };
 	AddPlace: { pickedLocation?: { lat: number; lng: number } };
 	Map: undefined;
 };

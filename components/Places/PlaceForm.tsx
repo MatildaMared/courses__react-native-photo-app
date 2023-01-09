@@ -4,10 +4,23 @@ import { Colors } from "../../constants/colors";
 import Button from "../UI/Button";
 import ImagePicker from "./ImagePicker";
 import LocationPicker from "./LocationPicker";
+import { Place } from "../../types/place";
 
-export default function PlaceForm() {
+interface Props {
+	onCreatePlace: (place: Place) => void;
+}
+
+type Location = {
+	latitude: number;
+	longitude: number;
+	address: string;
+};
+
+export default function PlaceForm(props: Props) {
+	const { onCreatePlace } = props;
+
 	const [title, setTitle] = useState("");
-	const [pickedLocation, setPickedLocation] = useState({ lat: 0, lng: 0 });
+	const [pickedLocation, setPickedLocation] = useState<Location>();
 	const [selectedImage, setSelectedImage] = useState("");
 
 	function titleChangeHandler(text: string) {
@@ -15,13 +28,25 @@ export default function PlaceForm() {
 	}
 
 	function savePlaceHandler() {
-		console.log("Title: ", title);
-		console.log("Location: ", pickedLocation);
-		console.log("Image: ", selectedImage);
+		if (!title || !pickedLocation || !selectedImage) {
+			return;
+		}
+
+		const place: Place = {
+			id: new Date().toString() + Math.random().toString(),
+			title,
+			location: {
+				latitude: pickedLocation.latitude,
+				longitude: pickedLocation.longitude,
+			},
+			imageUri: selectedImage,
+			address: pickedLocation.address,
+		};
+
+		onCreatePlace(place);
 	}
 
 	function takeImageHandler(imageUri: string) {
-		console.log("Took image");
 		setSelectedImage(imageUri);
 	}
 
@@ -30,8 +55,11 @@ export default function PlaceForm() {
 		lng: number;
 		address: string;
 	}) {
-		console.log("Picked location");
-		setPickedLocation(location);
+		setPickedLocation({
+			latitude: location.lat,
+			longitude: location.lng,
+			address: location.address,
+		});
 	}
 
 	return (
