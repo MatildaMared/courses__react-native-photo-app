@@ -16,7 +16,7 @@ import PlaceDetails from "./screens/PlaceDetails";
 export type StackParamList = {
 	AllPlaces: undefined;
 	AddPlace: { pickedLocation?: { lat: number; lng: number } };
-	Map: undefined;
+	Map: { initialLat?: number; initialLng?: number };
 	PlaceDetails: { placeId?: string };
 };
 
@@ -87,7 +87,7 @@ export default function App() {
 						name="PlaceDetails"
 						component={PlaceDetails}
 						options={{
-							title: "Details",
+							title: "Loading...",
 						}}
 					/>
 				</Stack.Navigator>
