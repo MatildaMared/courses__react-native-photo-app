@@ -13,7 +13,7 @@ import { useEffect, useState } from "react";
 import AppLoading from "expo-app-loading";
 
 export type StackParamList = {
-	AllPlaces: { place?: Place };
+	AllPlaces: undefined;
 	AddPlace: { pickedLocation?: { lat: number; lng: number } };
 	Map: undefined;
 };
